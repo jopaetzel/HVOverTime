@@ -71,10 +71,10 @@ ax2.plot(avg_curve, f, color=cm.batlow.get_under(), label='Mean')
 ax2.plot(avg_curve - std_curve, f, color=cm.batlow.get_under(), linestyle=':')
 ax2.plot(avg_curve + std_curve, f, color=cm.batlow.get_under(), linestyle=':')
 
-ax2.fill_betweenx(
-    f, avg_curve - std_curve, avg_curve + std_curve,
-    color=cm.batlow.get_over(), alpha=0.8, label="±1 STD"
-)
+ax2.fill_betweenx(f, avg_curve - std_curve, avg_curve + std_curve,
+                  color=cm.batlow.get_over(), alpha=0.8, label="±1 STD"
+                  )
+       
 ax2.set_xlabel('HVSR Amplitude')
 ax2.set_ylim(f[0], f[-1])   # ensure full frequency range is visible
 ax2.set_yticks([])          # hide y ticks
@@ -97,7 +97,7 @@ events = [
     ('2024-07-30T21:11:09', 'M3.0'),
     ('2024-07-29T06:35:47', 'M3.2'),
     ('2024-07-30T23:13:54', 'M2.8'),
-]
+        ]
 
 for time_str, label in events:
     # convert string to matplotlib date number
