@@ -38,7 +38,7 @@ def collect_day_files(sds_root: str | Path) -> tuple[list[list[str]], list[str]]
     sds_root = Path(sds_root)
     grouped = {}
 
-    for f in sds_root.rglob("*.D/*.D.*"):
+    for f in sds_root.rglob('*.D/*.D.*'):
         parts = f.name.split('.')
         net, sta, loc, chan, _, year, doy = parts
         key = (net, sta, year, doy)
@@ -95,24 +95,24 @@ sds = '/media/joni/Elements/gunnuvher/mseed/'         # path to sds archive
 results_dir = '/home/joni/Desktop/'                   # path to store results
 
 triplet_lists, stations = collect_day_files(sds)
-print(f"Found data for {len(stations)} stations: {stations}")
+print(f'Found data for {len(stations)} stations: {stations}')
 
 #%% SET PARAMETERS
 
 preprocessing_settings = hvsrpy.settings.HvsrPreProcessingSettings()
-preprocessing_settings.detrend = "linear"
+preprocessing_settings.detrend = 'linear'
 preprocessing_settings.window_length_in_seconds = 600
 preprocessing_settings.orient_to_degrees_from_north = 0.0
 preprocessing_settings.filter_corner_frequencies_in_hz = (0.01, 100)
 preprocessing_settings.ignore_dissimilar_time_step_warning = False
 
 processing_settings = hvsrpy.settings.HvsrTraditionalProcessingSettings()
-processing_settings.window_type_and_width = ("tukey", 0.01)
-processing_settings.smoothing=dict(operator="konno_and_ohmachi",
+processing_settings.window_type_and_width = ('tukey', 0.01)
+processing_settings.smoothing=dict(operator='konno_and_ohmachi',
                                bandwidth=40,
                                center_frequencies_in_hz=np.geomspace(1, 100, 500))
-processing_settings.method_to_combine_horizontals = "geometric_mean"
-processing_settings.handle_dissimilar_time_steps_by = "frequency_domain_resampling"
+processing_settings.method_to_combine_horizontals = 'geometric_mean'
+processing_settings.handle_dissimilar_time_steps_by = 'frequency_domain_resampling'
 
 #%% PROCESS ALL STATIONS IN LIST
 

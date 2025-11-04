@@ -40,7 +40,7 @@ ax3 = fig.add_subplot(left_gs[1, 0], sharex=ax)  # bottom f0 vs time panel
 right_gs = outer_gs[1].subgridspec(2, 1, height_ratios=[4, 1], hspace=0.05)
 ax2 = fig.add_subplot(right_gs[0, 0])
 ax2.set_ylim(ax.get_ylim())  # match y axis
-fig.add_subplot(right_gs[1, 0]).axis("off")  # hide the bottom right panel
+fig.add_subplot(right_gs[1, 0]).axis('off')  # hide the bottom right panel
 
 vmax = amplitudes.max()
 
@@ -72,7 +72,7 @@ ax2.plot(avg_curve - std_curve, f, color=cm.batlow.get_under(), linestyle=':')
 ax2.plot(avg_curve + std_curve, f, color=cm.batlow.get_under(), linestyle=':')
 
 ax2.fill_betweenx(f, avg_curve - std_curve, avg_curve + std_curve,
-                  color=cm.batlow.get_over(), alpha=0.8, label="±1 STD"
+                  color=cm.batlow.get_over(), alpha=0.8, label='±1 STD'
                   )
        
 ax2.set_xlabel('HVSR Amplitude')
