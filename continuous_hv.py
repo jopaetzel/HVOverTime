@@ -82,7 +82,7 @@ def extract_times(file: str, dt: int, n_windows: int) -> list:
     tr = st[0]
     start = tr.stats.starttime
 
-    # Generate midpoints: first midpoint + windows-1 more spaced by dt
+    # Generate midpoints: first midpoint + windows-1 spaced by dt
     times = [start + dt/2 + i*dt for i in range(n_windows)]
 
     # Convert to matplotlib times
@@ -134,7 +134,9 @@ for station in tqdm(stations, desc='Stations Processed'):
             amplitudes.append(hvsr.amplitude)
             times.append(extract_times(day_list[0], 
                                        dt=preprocessing_settings.window_length_in_seconds,
-                                       n_windows=len(srecords_preprocessed)))
+                                       n_windows=len(srecords_preprocessed)
+                                       )
+                         )
         except:
             print(f'Failed with {day_list}\n Skipping ...')
             continue
@@ -146,14 +148,13 @@ for station in tqdm(stations, desc='Stations Processed'):
     
     outpath = f'{results_dir}hv_result_{station}.npz'
 
-    np.savez(
-        outpath,
-        amplitudes=amplitudes,
-        times=times,
-        peak_amp=peak_amp,
-        f0=f0,
-        f=hvsr.frequency
-    )
+    np.savez(outpath,
+             amplitudes=amplitudes,
+             times=times,
+             peak_amp=peak_amp,
+             f0=f0,
+             f=hvsr.frequency
+             )
     
     # print(f'\nSaved results for {station} -> {outpath}')
 
