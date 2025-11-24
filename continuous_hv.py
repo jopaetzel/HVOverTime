@@ -141,7 +141,7 @@ for station in tqdm(stations, desc='Stations Processed'):
             print(f'Failed with {day_list}\n Skipping ...')
             continue
         
-    amplitudes, time, peak_amp, f0 = np.vstack(amplitudes), np.hstack(times), np.hstack(peak_amp), np.hstack(f0)
+    amplitudes, times, peak_amp, f0 = np.vstack(amplitudes), np.hstack(times), np.hstack(peak_amp), np.hstack(f0)
     
     outpath = f'{results_dir}hv_result_{station}.npz'
 
